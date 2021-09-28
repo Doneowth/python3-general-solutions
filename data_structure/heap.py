@@ -91,6 +91,22 @@ def test_top_k_element(l, k):
 
 if __name__ == '__main__':
     test_maxheap()
+    a = [1, 2, 45, 1, 215412, 4213, 124, 12, 412, 341, 4, 51, 51435, 56, 32, 5, 51, 56365, 3465, 23465, 3426, 2362, 36,
+         23, 63246, 23, 6, 326, 236, 2, 135, 135, 1, 212, 4, 21, 41, 45, 15, 4513, 61346]
+    h = MaxHeap(len(a))  # space O(len(a))
+    for i in range(len(a)):  # time O(len(a))
+        h.add(a[i])  # O(logN)
+    # c = []
+    # for i in range(len(a)):
+    #     c.append(h.extract())
+    # print(c[0:5])
+
+    d = []
+    for i in range(5):
+        d.append(h.extract())
+    print(d[0:5])
+
+
 
     #print_all([1,2,3])
     #test_maxheap()
