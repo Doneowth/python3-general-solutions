@@ -2,7 +2,7 @@ def quick_sort(nums: list) -> list:
     num_leng = len(nums)
     if num_leng < 2:
         return nums
-
+    # ...
     pivot = nums[0]
     left = []
     right = []
@@ -18,4 +18,4 @@ def quick_sort(nums: list) -> list:
 if __name__ == '__main__':
     l = [1,2]
     print(l.pop())
-    print(quick_sort([2, 1,66,4,55,2,-3]))
+    print(quick_sort([2, 1,66,4,55,2,-3,-888,-77,999999]))

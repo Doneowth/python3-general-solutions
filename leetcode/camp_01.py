@@ -328,6 +328,7 @@ class Solution:
             if syb in right:
                 if stack.pop() != d[syb]:
                     return False
+
         return True if len(stack) == 0 else False
 
     # https://leetcode.com/problems/merge-k-sorted-lists
@@ -346,10 +347,49 @@ class Solution:
                 heapq.heappush(h, (node.val, node))
         return head.next
 
+    # https://leetcode.com/problems/next-permutation/
+    def nextPermutation(self, nums: list[int]) -> None:
+        """
+        Do not return anything, modify nums in-place instead.
+        """
+        leng = len(nums)
+        swap_point = -1
+        just_greater = float('inf')
+        just_greater_index = -1
+        right = []
+        for i in range(leng - 1, -1, -1):
+            if i - 1 > -1:
+                if nums[i] > nums[i - 1]:
+                    swap_point = i - 1
+                    #print(swap_point)
+                    right = nums[i:]
+
+                    for j in range(0, len(right)):
+                        x = right[j] - nums[swap_point]
+                        if 0 < x < just_greater:
+                            # just_greater = x
+                            just_greater_index = j
+                    break
+        if swap_point == -1:
+            #print('No swap')
+            nums.reverse()
+        else:
+            # swap val
+            nums[swap_point], right[just_greater_index] = right[just_greater_index], nums[swap_point]
+            #reverse right
+            right.reverse()
+            #print(nums[:swap_point + 1])
+            nums = nums[:swap_point + 1] + right
+            # reverse it to ascending order
+        # test
+        print(nums)
+
+
 
 if __name__ == '__main__':
     s = Solution()
-    print(s.threeSum([-1, 0, 1, 2, -1, -4]))
+    s.nextPermutation([1,2,3,8,5,4,3,2,1])
+    # 1,2,4,1,2,3,3,5,8
     # print(s.twoSum([-1, 0, 2, -2, 1, -4], 0))
     # print(s.longestPalindrome('aaddaaxaabacxcsssabaaxcabaax'))
     # "xaabacxcabaax"
